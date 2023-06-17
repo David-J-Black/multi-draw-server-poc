@@ -1,2 +1,2 @@
 from .connectionService import ConnectionService
-#from .canvasService import CanvasService
+from .canvasService import CanvasService

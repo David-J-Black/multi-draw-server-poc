@@ -1,4 +1,5 @@
-import tkinter
+from tkinter import Tk, Canvas
+import os
 
 """
 This is the class we will use to dictate where things are
@@ -13,16 +14,23 @@ class Coordinates():
 
 class CanvasService():
 
-    tk = None
+    window = None
     canvas = None
+    parent_close_function = None
 
     def on_canvas_click(event):
         print(event)
 
-    def __init__(self):
+    def on_close(self):
+        self.parent_close_function()
 
-        # What the fuck is this?
-        self.tk = tkinter.Tk()
-        self.canvas = tk.Canvas(tk, width=400, heigh = 400, bg='white')
-        self.canvas.pack
-        self.tk.mainloop()
+    def __init__(self, parent_close_function):
+
+        print(f'Creating Window...')
+        self.window = Tk()
+        self.window.title('Hello Stinky')
+        self.window.geometry("800x600")
+        self.window.protocol("WM_DELETE_WINDOW", self.on_close)
+        self.canvas = Canvas(self.window, bg='white')
+        self.parent_close_function = parent_close_function
+        self.window.mainloop()

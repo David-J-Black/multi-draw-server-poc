@@ -14,7 +14,6 @@ class ConnectionService(socketio.Client):
 
         print(f'Going to connect to server: {server_location}')
         self.connect(server_location)
-        self.wait()
 
     def on_connect(self):
         print('I\'m connected motherfucker!')
